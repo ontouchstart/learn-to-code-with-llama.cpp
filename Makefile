@@ -4,7 +4,8 @@ make=make -C $(build)
 default:;cat -n Makefile
 help:$(build);$(make) help
 all:$(build);$(make) all&&make ls
-test:$(build);$(make) test
+test/alloc:$(build);$(make) test-alloc&&$(build)/bin/test-alloc
+llama-common-base:$(build);$(make) llama-common-base
 llama:$(build);$(make) llama&&make ls
 ggml-metal:$(build);$(make)ggml-metal&&make ls
 ggml-base:$(build);$(make) ggml-metal&&make ls
