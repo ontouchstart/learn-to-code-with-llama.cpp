@@ -1,4 +1,5 @@
 help:llama.cpp/build;make -C llama.cpp/build help
+all:llama.cpp/build;make -C llama.cpp/build all&&make ls
 ggml-metal:llama.cpp/build;make -C llama.cpp/build ggml-metal&&make ls
 ggml-base:llama.cpp/build;make -C llama.cpp/build ggml-metal&&make ls
 check:llama.cpp/build;make -C llama.cpp/build cmake_check_build_system
