@@ -4,7 +4,8 @@ make=make -C $(build)
 default:;cat -n Makefile
 help:$(build);$(make) help
 all:$(build);$(make) all&&make ls
-test:all;-$(make) test
+build-tests:$(build);make -C llama.cpp/build/tests&&make ls
+test:build-tests;-$(make) test
 test/alloc:$(build);$(make) test-alloc&&$(build)/bin/test-alloc
 llama-common:$(build);$(make) llama-common
 llama-common-base:$(build);$(make) llama-common-base
