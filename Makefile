@@ -14,6 +14,6 @@ ggml-metal:$(build);$(make)ggml-metal&&make ls
 ggml-base:$(build);$(make) ggml-metal&&make ls
 check:$(build);$(make) cmake_check_build_system
 ls:$(build);ls -l $(build)/bin
-clean:$(build);$(make) clean&&make ls
-$(build):$(src);cd $(src) && cmake -B build
+$(build):$(src);cd $(src) && cmake -B build -D LLAMA_BUILD_EXAMPLES=ON
+clean:$(src);rm -rf $(build)
 $(src):;git clone --depth 1 https://github.com/ggml-org/llama.cpp.git&&ls $(src)
