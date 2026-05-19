@@ -4,9 +4,13 @@ make=make -C $(build)
 default:;cat -n Makefile
 help:$(build);$(make) help
 all:$(build);$(make) all&&make ls
-build-tests:$(build);make -C llama.cpp/build/tests&&make ls
-test:build-tests;-$(make) llama-eval-callback test
-test/alloc:$(build);$(make) test-alloc&&$(build)/bin/test-alloc
+build/common:$(build);$(make) clean&&make -C $(build)/common&&make ls
+build/examples:$(build);$(make) clean&&make -C $(build)/examples&&make ls
+build/ggml:$(build);$(make) clean&&make -C $(build)/ggml&&make ls
+build/pocs:$(build);$(make) clean&&make -C $(build)/pocs&&make ls
+build/src::$(build);$(make) clean&&make -C $(build)/src&&make ls
+build/tests:$(build);$(make) clean&&make -C $(build)/tests&&make -C $(build)/tests test&&make ls
+build/tools:$(build);$(make) clean&&make -C $(build)/tools&&make ls
 llama-common:$(build);$(make) llama-common
 llama-common-base:$(build);$(make) llama-common-base
 llama:$(build);$(make) llama&&make ls
