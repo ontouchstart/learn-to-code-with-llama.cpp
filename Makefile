@@ -1,5 +1,5 @@
 src=llama.cpp
-build=$(src)/build
+build=b
 make=make -C $(build)
 default:;cat -n Makefile
 help:$(build);$(make) help
@@ -18,7 +18,7 @@ ggml-metal:$(build);$(make)ggml-metal&&make ls
 ggml-base:$(build);$(make) ggml-metal&&make ls
 check:$(build);$(make) cmake_check_build_system
 ls:$(build);ls -l $(build)/bin
-$(build):$(src);cd $(src) && cmake -B build -D LLAMA_BUILD_EXAMPLES=ON
+$(build):$(src);cd $(src) && cmake -B ../$(build) -D LLAMA_BUILD_EXAMPLES=ON
 patch-tests:$(src); cd $(src) && patch < ../tests.diff
 clean:$(src);rm -rf $(build)
 $(src):;git clone --depth 1 https://github.com/ggml-org/llama.cpp.git&&ls $(src)&&make patch-tests
