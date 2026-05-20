@@ -17,8 +17,8 @@ llama:$(build);$(make) llama&&make ls
 ggml-metal:$(build);$(make)ggml-metal&&make ls
 ggml-base:$(build);$(make) ggml-metal&&make ls
 check:$(build);$(make) cmake_check_build_system
-ls:$(build);ls -l $(build)/bin
-$(build):$(src);cd $(src) && cmake -B ../$(build) -D LLAMA_BUILD_EXAMPLES=ON
-patch:$(src); cd $(src) && patch < ../diff/CMakeLists.txt && patch < ../diff/tests/CMakeLists.txt 
+ls:$(build);ls -l $(build)/*
+$(build):$(src);cmake -B $(build) -DLLAMA_BUILD_EXAMPLES=ON -DCMAKE_BUILD_TYPE=Debug $(src)&&wc b/*/Makefile b/Makefile
+patch:$(src); cd $(src) &&git checkout -- .&& patch < ../diff/CMakeLists.txt && patch < ../diff/tests/CMakeLists.txt
 clean:$(src);rm -rf $(build)
 $(src):;git clone --depth 1 https://github.com/ggml-org/llama.cpp.git&&ls $(src)&&make patch
