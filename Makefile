@@ -3,7 +3,8 @@ build=b
 make=make -C $(build)
 default:;cat -n Makefile
 help:$(build);$(make) help
-all:$(build);$(make) all&&make ls
+all:$(build);$(make) all
+test:all;$(make) test
 build/common:$(build);$(make) clean&&make -C $(build)/common&&make ls
 build/examples:$(build);$(make) clean&&make -C $(build)/examples&&make ls
 build/ggml:$(build);$(make) clean&&make -C $(build)/ggml&&make ls
